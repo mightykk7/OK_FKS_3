@@ -275,14 +275,27 @@ namespace zad
     public class UnitTest3
     {
         [Fact]
-        public void CalculatePrice_defoult()
+        public void CalculatePrice_RequestNull()
         {
-            TicketRequest request = new TicketRequest
-            {
-            };
-            decimal price = 300;
+            TicketRequest request = null;
             TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
-            decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
+            Assert.Throws<ArgumentNullException>(() => ticketPriceCalculator.CalculatePrice(request));
+        }
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(150)]
+        public void CalculatePrice_ArgumentOutOfRangeException_Over_0(int age)
+        {
+            var request = new TicketRequest
+            {
+                Age = age,
+                IsStudent = false,
+                IsVip = false,
+                Day = DayOfWeek.Monday,
+                SessionTime = new TimeSpan(15, 0, 0)
+            };
+            TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
+            Assert.Throws<ArgumentOutOfRangeException>(() => ticketPriceCalculator.CalculatePrice(request));
         }
     }
 }

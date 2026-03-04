@@ -99,3 +99,4 @@ C:\Users\st310-02\Desktop\ratovskij\zad\obj\Debug\net8.0\refint\zad.dll
 C:\Users\st310-02\Desktop\ratovskij\zad\obj\Debug\net8.0\zad.pdb
 C:\Users\st310-02\Desktop\ratovskij\zad\obj\Debug\net8.0\zad.genruntimeconfig.cache
 C:\Users\st310-02\Desktop\ratovskij\zad\obj\Debug\net8.0\ref\zad.dll
+C:\Users\st310-02\Desktop\ratovskij\zad\obj\Debug\net8.0\zad.sourcelink.json

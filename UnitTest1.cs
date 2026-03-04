@@ -199,14 +199,12 @@ namespace zad
             decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
             Assert.Equal(price, actualprice);
         }
-        [Theory]
-        [InlineData(5)]
-        [InlineData(6)]
-        public void CalculatePrice_5_6Age(int age)
+        [Fact]
+        public void CalculatePrice_5()
         {
             TicketRequest request = new TicketRequest
             {
-                Age = age,
+                Age = 5,
                 IsStudent = false,
                 IsVip = false,
                 Day = DayOfWeek.Monday,
@@ -217,56 +215,113 @@ namespace zad
             decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
             Assert.Equal(price, actualprice);
         }
-        [Theory]
-        [InlineData(17)]
-        [InlineData(18)]
-        public void CalculatePrice_17_18Age(int age)
+        [Fact]
+        public void CalculatePrice_6Age()
         {
             TicketRequest request = new TicketRequest
             {
-                Age = age,
+                Age = 6,
                 IsStudent = false,
                 IsVip = false,
                 Day = DayOfWeek.Monday,
                 SessionTime = new TimeSpan(15, 0, 0),
             };
-            decimal price = 0;
+            decimal price = 300 - (300 * 40) / 100;
             TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
             decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
             Assert.Equal(price, actualprice);
         }
-        [Theory]
-        [InlineData(25)]
-        [InlineData(26)]
-        public void CalculatePrice_25_26Age(int age)
+        [Fact]
+        public void CalculatePrice_17Age()
         {
             TicketRequest request = new TicketRequest
             {
-                Age = age,
+                Age = 17,
                 IsStudent = false,
                 IsVip = false,
                 Day = DayOfWeek.Monday,
                 SessionTime = new TimeSpan(15, 0, 0),
             };
-            decimal price = 0;
+            decimal price = 300 - (300 * 40) / 100;
             TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
             decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
             Assert.Equal(price, actualprice);
         }
-        [Theory]
-        [InlineData(64)]
-        [InlineData(66)]
-        public void CalculatePrice_64_65Age(int age)
+        public void CalculatePrice_18Age()
         {
             TicketRequest request = new TicketRequest
             {
-                Age = age,
+                Age = 18,
                 IsStudent = false,
                 IsVip = false,
                 Day = DayOfWeek.Monday,
                 SessionTime = new TimeSpan(15, 0, 0),
             };
-            decimal price = 0;
+            decimal price = 300 - (300 * 20) / 100;
+            TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
+            decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
+            Assert.Equal(price, actualprice);
+        }
+        [Fact]
+        public void CalculatePrice_25Age()
+        {
+            TicketRequest request = new TicketRequest
+            {
+                Age = 25,
+                IsStudent = true,
+                IsVip = false,
+                Day = DayOfWeek.Monday,
+                SessionTime = new TimeSpan(15, 0, 0),
+            };
+            decimal price = 300 - (300 * 20) / 100;
+            TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
+            decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
+            Assert.Equal(price, actualprice);
+        }
+        [Fact]
+        public void CalculatePrice_26Age()
+        {
+            TicketRequest request = new TicketRequest
+            {
+                Age = 26,
+                IsStudent = false,
+                IsVip = false,
+                Day = DayOfWeek.Monday,
+                SessionTime = new TimeSpan(15, 0, 0),
+            };
+            decimal price = 300;
+            TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
+            decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
+            Assert.Equal(price, actualprice);
+        }
+        [Fact]
+        public void CalculatePrice_64Age()
+        {
+            TicketRequest request = new TicketRequest
+            {
+                Age = 64,
+                IsStudent = false,
+                IsVip = false,
+                Day = DayOfWeek.Monday,
+                SessionTime = new TimeSpan(15, 0, 0),
+            };
+            decimal price = 300;
+            TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
+            decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
+            Assert.Equal(price, actualprice);
+        }
+        [Fact]
+        public void CalculatePrice_65Age()
+        {
+            TicketRequest request = new TicketRequest
+            {
+                Age = 65,
+                IsStudent = false,
+                IsVip = false,
+                Day = DayOfWeek.Monday,
+                SessionTime = new TimeSpan(15, 0, 0),
+            };
+            decimal price = 300 - (300 * 50) / 100;
             TicketPriceCalculator ticketPriceCalculator = new TicketPriceCalculator();
             decimal actualprice = ticketPriceCalculator.CalculatePrice(request);
             Assert.Equal(price, actualprice);
@@ -284,7 +339,7 @@ namespace zad
         [Theory]
         [InlineData(-1)]
         [InlineData(150)]
-        public void CalculatePrice_ArgumentOutOfRangeException_Over_0(int age)
+        public void CalculatePrice_LessThan0_MoreThan120(int age)
         {
             var request = new TicketRequest
             {
